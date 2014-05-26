@@ -5,7 +5,6 @@
 
 void attemptLock(const char *lockFileName)
 {
-    if (lockFileName == NULL) return;
     int fd = open(lockFileName, O_CREAT | O_WRONLY, 0666);
     if (!fd || flock(fd, LOCK_EX)) perror(NULL);
 }
@@ -13,7 +12,7 @@ void attemptLock(const char *lockFileName)
 int main(int argc, char *argv[])
 {
     if (argc < 3) {
-        fprintf(stderr, "Usage: %s LOCKFILENAME COMMAND...\n", argv[0]);
+        fprintf(stderr, "%s: error: Not enough arguments.\nUsage: %s LOCKFILENAME COMMAND...\n", argv[0], argv[0]);
         return 1;
     }
     attemptLock(argv[0]);
