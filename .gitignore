@@ -1,0 +1,4 @@
+*.[ado]
+*.exe
+sflock
+makehelp.pl
