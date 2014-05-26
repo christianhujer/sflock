@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     attemptLock(argv[0]);
-    argv += 2; // skip our own command name and LOCKFILENAME.
+    argv += 2; // Skip our own command name and LOCKFILENAME.
     execvp(argv[0], argv);
+    perror(NULL);
 }
