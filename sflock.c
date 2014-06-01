@@ -6,7 +6,8 @@
 void attemptLock(const char *lockFileName)
 {
     int fd = open(lockFileName, O_CREAT | O_WRONLY, 0666);
-    if (!fd || flock(fd, LOCK_EX)) perror(NULL);
+    if (!fd || flock(fd, LOCK_EX))
+        perror(NULL);
 }
 
 int main(int argc, char *argv[])
@@ -16,7 +17,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     attemptLock(argv[0]);
-    argv += 2; // Skip our own command name and LOCKFILENAME.
+    argv += 2;  // Skip our own command name and LOCKFILENAME.
     execvp(argv[0], argv);
     perror(NULL);
 }

@@ -1,4 +1,8 @@
 *.[ado]
+*.a.lock
 *.exe
-sflock
+*.swp
+*~
 makehelp.pl
+sflock
+tags
