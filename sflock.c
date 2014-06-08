@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 3)
         errx(EXIT_FAILURE, "Not enough arguments.\nUsage: %s LOCKFILENAME COMMAND...\n", __progname);
-    attemptLock(argv[0]);
+    attemptLock(argv[1]);
     argv += 2;  // Skip our own command name and LOCKFILENAME.
     execvp(argv[0], argv);
     err(EXIT_FAILURE, "Cannot execute %s", argv[0]);
