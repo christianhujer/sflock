@@ -2,22 +2,26 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/file.h>
+#include <err.h>
+#include <stdlib.h>
+
+// XXX:2014-06-08:cher:3:This is a hack, I know :)
+// I just don't want to use argv[0] for getting the program name any longer.
+extern const char *__progname;
 
 void attemptLock(const char *lockFileName)
 {
     int fd = open(lockFileName, O_CREAT | O_WRONLY, 0666);
     if (!fd || flock(fd, LOCK_EX))
-        perror(NULL);
+        warn("Cannot lock %s", lockFileName);
 }
 
 int main(int argc, char *argv[])
 {
-    if (argc < 3) {
-        fprintf(stderr, "%s: error: Not enough arguments.\nUsage: %s LOCKFILENAME COMMAND...\n", argv[0], argv[0]);
-        return 1;
-    }
+    if (argc < 3)
+        errx(EXIT_FAILURE, "Not enough arguments.\nUsage: %s LOCKFILENAME COMMAND...\n", __progname);
     attemptLock(argv[0]);
     argv += 2;  // Skip our own command name and LOCKFILENAME.
     execvp(argv[0], argv);
-    perror(NULL);
+    err(EXIT_FAILURE, "Cannot execute %s", argv[0]);
 }
