@@ -5,10 +5,6 @@
 #include <err.h>
 #include <stdlib.h>
 
-// XXX:2014-06-08:cher:3:This is a hack, I know :)
-// I just don't want to use argv[0] for getting the program name any longer.
-extern const char *__progname;
-
 void attemptLock(const char *lockFileName)
 {
     int fd = open(lockFileName, O_CREAT | O_WRONLY, 0666);
@@ -19,7 +15,7 @@ void attemptLock(const char *lockFileName)
 int main(int argc, char *argv[])
 {
     if (argc < 3)
-        errx(EXIT_FAILURE, "Not enough arguments.\nUsage: %s LOCKFILENAME COMMAND...\n", __progname);
+        errx(EXIT_FAILURE, "Not enough arguments.\nUsage: %s LOCKFILENAME COMMAND...\n", argv[0]);
     attemptLock(argv[1]);
     argv += 2;  // Skip our own command name and LOCKFILENAME.
     execvp(argv[0], argv);
