@@ -3,7 +3,6 @@
 *.a.lock
 *.exe
 .help.mak
-makehelp.pl
 sflock
 *.swp
 tags
