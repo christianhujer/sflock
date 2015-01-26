@@ -46,4 +46,4 @@ indent:
 install: all
 	install -t $(BINDIR) $(PROGRAMNAME)
 
--include Help.mak
+-include makehelp/Help.mak

@@ -1,8 +1,9 @@
+*~
 *.[ado]
 *.a.lock
 *.exe
-*.swp
-*~
+.help.mak
 makehelp.pl
 sflock
+*.swp
 tags
