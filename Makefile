@@ -47,7 +47,7 @@ install: all
 	install -d $(BINDIR)
 	install -t $(BINDIR) $(PROGRAMNAME)
 
--include makehelp/Help.mak
-
 control.Description=sflock - a simple file locking command.
 -include makedist/MakeDist.mak
+
+-include makehelp/Help.mak
