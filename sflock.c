@@ -8,7 +8,7 @@
 void attemptLock(const char *lockFileName)
 {
     int fd = open(lockFileName, O_CREAT | O_WRONLY, 0666);
-    if (!fd || flock(fd, LOCK_EX))
+    if (fd < 0 || flock(fd, LOCK_EX))
         warn("Cannot lock %s", lockFileName);
 }
 
