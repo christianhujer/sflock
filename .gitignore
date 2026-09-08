@@ -6,3 +6,4 @@
 sflock
 *.swp
 tags
+*.dSYM/
